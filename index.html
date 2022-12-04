@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/asserts/eu-retro.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+        <title>AndreLdev</title>
+    </head>
+
+    <body class=" dark:bg-slate-800 dark:text-white">
+        <main class="container-main" id="app">
+
+            <div id="card" class="card border-solid border-2 border-sky-500 rounded-lg shadow-lg">
+                <div class="grid grid-cols-3">
+                    <img class="h-40 w-40 rounded-lg" src="./asserts/eu-retro.png">
+                    <div class="m-5 mx-8 col-span-2 content-start">
+                        <p class="font-semibold subpixel-antialiased text-slate-400"
+                            :class="`${interface.card.fontSizeTitle}`">André Luiz</p>
+
+                        <p class="subpixel-antialiased" :class="`${interface.card.fontSizeNick}`">ldedev</p>
+
+                        <div class="space-y-5 divide-y-2 divide-sky-500">
+                            <div></div>
+                            <p class="font-md subpixel-antialiased" :class="`${interface.card.fontSizeSubTitle}`">No
+                                minímo será diverdito trocar uma idéia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="items">
+                <div class='grid mt-20 ' :class="`grid-cols-${interface.grid.cols}`"
+                    :style="`display:${interface.grid.visible};`">
+                    <div v-for="obj in shares" class="
+                            button
+                            mt-10
+                            p-5
+                                sm:mt-5
+                                sm:ml-5
+                                sm:mr-5
+                                md:mt-5
+                                md:ml-5
+                                md:mr-5
+                                lg:mr-20
+                                lg:ml-20
+                                xl:mr-25
+                                xl:ml-25
+                                2xl:mr-30
+                                2xl:ml-30
+                            border-solid
+                            border-2
+                            border-pink-500
+                            rounded-lg
+                            " style="margin: 25px;" @click="OpenPage(obj.link)"
+                        :class="`${interface.grid.containerMarginLeftRight}`">
+                        <button class="
+                        text-left
+                        mb-16
+                            md:ml-2
+                        " :class="`${interface.grid.marginLeft} ${interface.grid.paddingBottom}`">
+                            <p class="
+                            text-3xl
+                                md:text-2xl
+                            font-semibold
+                            subpixel-antialiased
+                            text-slate-400
+                            ">
+                                {{obj.rede}}
+                            </p>
+                            <div class="
+                            mt-5
+                            mb-0 h-0
+                            text-lg
+                                md:mt-0
+                                md:text-base
+                            font-semibold
+                            subpixel-antialiased
+                            text-slate-400
+                            ">
+                                {{obj.message}}
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+        <script src="index.js" defer></script>
+    </body>
+
+</html>

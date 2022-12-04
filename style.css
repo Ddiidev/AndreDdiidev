@@ -1,0 +1,17 @@
+main.container-main {
+    margin-top: 8%;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.card {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    padding: 15px;
+    padding-left: 30px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.button {
+    cursor: pointer;
+}
