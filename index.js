@@ -39,11 +39,11 @@ const app = {
                     message: "Aqui fica tudo que já fiz/faço (muito massa oque eu já fiz)",
                     link: "https://github.com/ldedev"
                 },
-                // {
-                //     rede: 'Posts e documentos',
-                //     message: "Aqui é alguns posts que fiz, tentando ajudar ou falando de algo massa.",
-                //     link: ""
-                // }
+                {
+                    rede: 'Linkedin',
+                    message: "Ótimo local para acompanhar publicações mais profissionais.",
+                    link: "https://www.linkedin.com/in/andr%C3%A9-luiz-silva-santos/"
+                }
             ]
         }
     },
