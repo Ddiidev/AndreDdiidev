@@ -42,7 +42,7 @@ const app = {
                 {
                     rede: 'Linkedin',
                     message: "Ótimo local para acompanhar publicações mais profissionais.",
-                    link: "https://www.linkedin.com/in/andr%C3%A9-luiz-silva-santos/"
+                    link: "https://www.linkedin.com/in/andreluizss/"
                 }
             ]
         }
