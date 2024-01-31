@@ -27,7 +27,7 @@ const app = {
                 {
                     rede: 'Youtube',
                     message: "Lugar pra descarregar todos os meus pensamentos.",
-                    link: "https://www.youtube.com/@Andreldev"
+                    link: "https://www.youtube.com/@Ddiidev"
                 },
                 {
                     rede: 'Instagram',
@@ -37,7 +37,7 @@ const app = {
                 {
                     rede: 'GitHub',
                     message: "Aqui fica tudo que já fiz/faço (muito massa oque eu já fiz)",
-                    link: "https://github.com/ldedev"
+                    link: "https://github.com/Ddiidev"
                 },
                 {
                     rede: 'Linkedin',
