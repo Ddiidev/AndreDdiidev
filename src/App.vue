@@ -110,11 +110,11 @@ fetchRepos()
         <div class="nes-container is-dark with-title mt-4 mb-4">
           <p class="title">{{ t('projects.highlights_title') }}</p>
           <div class="highlight-project">
-            <h3>BrasilAPI SDK (Vlang)</h3>
+            <h3><a href="https://ddiidev.github.io/brasilapi-v/" target="_blank">BrasilAPI SDK (Vlang)</a></h3>
             <p v-html="t('projects.brasilapi_desc')"></p>
           </div>
           <div class="highlight-project">
-            <h3>Tabua de Maré API</h3>
+            <h3><a href="https://tabuamare.devtu.qzz.io" target="_blank">Tabua de Maré API</a></h3>
             <p v-html="t('projects.tabua_desc')"></p>
           </div>
         </div>
