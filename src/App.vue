@@ -6,6 +6,18 @@ const { t, locale } = useI18n()
 const currentTab = ref('sobre')
 const repos = ref<any[]>([])
 
+const externalProjects = [
+  {
+    id: 'recordsaas-site',
+    name: 'recordSaaS',
+    url: 'https://recordsaas.app/',
+    description: 'Plataforma SaaS para gravação e gestão de conteúdos.',
+    language: 'Web',
+    stargazers_count: null,
+    isExternal: true
+  }
+]
+
 const targetRepos = [
   'sdk_gemini',
   'tabua_mare_api',
@@ -18,9 +30,12 @@ const targetRepos = [
 ]
 
 const filteredRepos = computed(() => {
-  return repos.value.filter(repo => 
-    targetRepos.some(target => repo.name.toLowerCase() === target.toLowerCase())
+  const githubRepos = repos.value.filter(repo =>
+    targetRepos.some(target => repo.name.toLowerCase() === target.toLowerCase()) &&
+    !repo.name.toLowerCase().includes('recordsaas')
   ).sort((a, b) => b.stargazers_count - a.stargazers_count)
+
+  return [...externalProjects, ...githubRepos]
 })
 
 const totalStars = computed(() => {
@@ -116,6 +131,16 @@ fetchRepos()
           <div class="highlight-project">
             <h3><a href="https://tabuamare.devtu.qzz.io" target="_blank">Tabua de Maré API</a></h3>
             <p v-html="t('projects.tabua_desc')"></p>
+            <a href="https://tabuamare.devtu.qzz.io" target="_blank" class="preview-link">
+              <img src="https://tabuamare.devtu.qzz.io/pages/assets/og.webp" alt="Preview da API Tábua de Marés" class="project-preview" />
+            </a>
+          </div>
+          <div class="highlight-project">
+            <h3><a href="https://recordsaas.app/" target="_blank">recordSaaS</a></h3>
+            <p>Plataforma de vídeos para SaaS com foco em demonstrações interativas.</p>
+            <a href="https://recordsaas.app/" target="_blank" class="preview-link">
+              <img src="https://recordsaas.app/assets/app-screenshot.webp" alt="Preview do recordSaaS" class="project-preview" />
+            </a>
           </div>
         </div>
 
@@ -137,11 +162,12 @@ fetchRepos()
         <h3>{{ t('projects.all_repos') }}</h3>
         <div v-for="repo in filteredRepos" :key="repo.id" class="nes-container is-rounded mb-2 repo-card">
           <div class="repo-header">
-            <a :href="repo.html_url" target="_blank">{{ repo.name }}</a>
-            <span class="nes-badge is-splited">
+            <a :href="repo.isExternal ? repo.url : repo.html_url" target="_blank">{{ repo.name }}</a>
+            <span v-if="!repo.isExternal" class="nes-badge is-splited">
               <span class="is-dark">{{ repo.language || 'Code' }}</span>
               <span class="is-primary">{{ repo.stargazers_count }} ★</span>
             </span>
+            <span v-else class="nes-text is-success">{{ repo.language }}</span>
           </div>
           <p class="repo-desc">{{ repo.description }}</p>
         </div>
@@ -258,6 +284,17 @@ fetchRepos()
 .repo-header a {
   color: #209cee;
   text-decoration: none;
+}
+
+.preview-link {
+  display: block;
+  margin-top: 0.8rem;
+}
+
+.project-preview {
+  width: 100%;
+  border: 3px solid #212529;
+  border-radius: 6px;
 }
 
 .repo-desc {
