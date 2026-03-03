@@ -6,6 +6,18 @@ const { t, locale } = useI18n()
 const currentTab = ref('sobre')
 const repos = ref<any[]>([])
 
+const externalProjects = [
+  {
+    id: 'recordsaas-site',
+    name: 'recordSaaS',
+    url: 'https://recordsaas.app/',
+    description: 'Plataforma SaaS para gravação e gestão de conteúdos.',
+    language: 'Web',
+    stargazers_count: null,
+    isExternal: true
+  }
+]
+
 const targetRepos = [
   'sdk_gemini',
   'tabua_mare_api',
@@ -18,9 +30,12 @@ const targetRepos = [
 ]
 
 const filteredRepos = computed(() => {
-  return repos.value.filter(repo => 
-    targetRepos.some(target => repo.name.toLowerCase() === target.toLowerCase())
+  const githubRepos = repos.value.filter(repo =>
+    targetRepos.some(target => repo.name.toLowerCase() === target.toLowerCase()) &&
+    !repo.name.toLowerCase().includes('recordsaas')
   ).sort((a, b) => b.stargazers_count - a.stargazers_count)
+
+  return [...externalProjects, ...githubRepos]
 })
 
 const totalStars = computed(() => {
@@ -137,11 +152,12 @@ fetchRepos()
         <h3>{{ t('projects.all_repos') }}</h3>
         <div v-for="repo in filteredRepos" :key="repo.id" class="nes-container is-rounded mb-2 repo-card">
           <div class="repo-header">
-            <a :href="repo.html_url" target="_blank">{{ repo.name }}</a>
-            <span class="nes-badge is-splited">
+            <a :href="repo.isExternal ? repo.url : repo.html_url" target="_blank">{{ repo.name }}</a>
+            <span v-if="!repo.isExternal" class="nes-badge is-splited">
               <span class="is-dark">{{ repo.language || 'Code' }}</span>
               <span class="is-primary">{{ repo.stargazers_count }} ★</span>
             </span>
+            <span v-else class="nes-text is-success">{{ repo.language }}</span>
           </div>
           <p class="repo-desc">{{ repo.description }}</p>
         </div>
