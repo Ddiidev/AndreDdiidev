@@ -131,12 +131,15 @@ fetchRepos()
           <div class="highlight-project">
             <h3><a href="https://tabuamare.devtu.qzz.io" target="_blank">Tabua de Maré API</a></h3>
             <p v-html="t('projects.tabua_desc')"></p>
+            <a href="https://tabuamare.devtu.qzz.io" target="_blank" class="preview-link">
+              <img src="https://tabuamare.devtu.qzz.io/pages/assets/og.webp" alt="Preview da API Tábua de Marés" class="project-preview" />
+            </a>
           </div>
           <div class="highlight-project">
             <h3><a href="https://recordsaas.app/" target="_blank">recordSaaS</a></h3>
             <p>Plataforma de vídeos para SaaS com foco em demonstrações interativas.</p>
             <a href="https://recordsaas.app/" target="_blank" class="preview-link">
-              <img src="https://recordsaas.app/assets/app-screenshot.webp" alt="Preview do recordSaaS" class="recordsaas-preview" />
+              <img src="https://recordsaas.app/assets/app-screenshot.webp" alt="Preview do recordSaaS" class="project-preview" />
             </a>
           </div>
         </div>
@@ -288,7 +291,7 @@ fetchRepos()
   margin-top: 0.8rem;
 }
 
-.recordsaas-preview {
+.project-preview {
   width: 100%;
   border: 3px solid #212529;
   border-radius: 6px;
