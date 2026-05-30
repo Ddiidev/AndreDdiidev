@@ -18,6 +18,36 @@ const externalProjects = [
   }
 ]
 
+const languageLabels: Record<string, string> = {
+  javascript: 'Js',
+  typescript: 'Ts',
+  python: 'Py',
+  shell: 'Shell',
+  dockerfile: 'Docker',
+  'c++': 'C++',
+  'c#': 'C#',
+  scss: 'CSS',
+  less: 'CSS',
+  html: 'HTML',
+  css: 'CSS',
+  vue: 'Vue',
+  v: 'V',
+  go: 'Go',
+  rust: 'Rs',
+  ruby: 'Rb',
+  php: 'PHP',
+  java: 'Java',
+  kotlin: 'Kt',
+  swift: 'Swift',
+  dart: 'Dart'
+}
+
+const getLanguageLabel = (language?: string | null) => {
+  if (!language) return 'Code'
+
+  return languageLabels[language.toLowerCase()] || language
+}
+
 const targetRepos = [
   'sdk_gemini',
   'tabua_mare_api',
@@ -163,8 +193,8 @@ fetchRepos()
         <div v-for="repo in filteredRepos" :key="repo.id" class="nes-container is-rounded mb-2 repo-card">
           <div class="repo-header">
             <a :href="repo.isExternal ? repo.url : repo.html_url" target="_blank">{{ repo.name }}</a>
-            <span v-if="!repo.isExternal" class="nes-badge is-splited">
-              <span class="is-dark">{{ repo.language || 'Code' }}</span>
+            <span v-if="!repo.isExternal" class="nes-badge is-splited repo-badge">
+              <span class="is-dark">{{ getLanguageLabel(repo.language) }}</span>
               <span class="is-primary">{{ repo.stargazers_count }} ★</span>
             </span>
             <span v-else class="nes-text is-success">{{ repo.language }}</span>
@@ -284,6 +314,10 @@ fetchRepos()
 .repo-header a {
   color: #209cee;
   text-decoration: none;
+}
+
+.nes-badge.repo-badge {
+  width: 11.5em;
 }
 
 .preview-link {
