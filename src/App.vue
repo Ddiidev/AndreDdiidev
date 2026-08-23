@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import tabuaMarePreview from './assets/projects/tabuamare-preview.png'
+import json2vPreview from './assets/projects/json2v-preview.png'
+import aceitaTempoPreview from './assets/projects/aceitatempo-preview.png'
 
 const { t, locale } = useI18n()
 const currentTab = ref('sobre')
+const currentYear = new Date().getFullYear()
 const repos = ref<any[]>([])
 
 const externalProjects = [
@@ -48,6 +52,10 @@ const getLanguageLabel = (language?: string | null) => {
   return languageLabels[language.toLowerCase()] || language
 }
 
+const getStars = (repoName: string) => {
+  return repos.value.find(repo => repo.name.toLowerCase() === repoName.toLowerCase())?.stargazers_count
+}
+
 const targetRepos = [
   'sdk_gemini',
   'tabua_mare_api',
@@ -56,7 +64,8 @@ const targetRepos = [
   'WindowsRegistry',
   'vbrasil-api',
   'sdkbuilder',
-  'BabyDicionario'
+  'BabyDicionario',
+  'AceitaTempo'
 ]
 
 const filteredRepos = computed(() => {
@@ -117,7 +126,7 @@ fetchRepos()
           <div class="social-links">
             <a href="https://github.com/Ddiidev" target="_blank" class="nes-icon github is-medium"></a>
             <a href="https://www.linkedin.com/in/andreluizss/" target="_blank" class="nes-icon linkedin is-medium"></a>
-            <a href="https://www.youtube.com/@mais.foco42" target="_blank" class="nes-icon youtube is-medium"></a>
+            <a href="https://www.youtube.com/@code.artesanal" target="_blank" class="nes-icon youtube is-medium"></a>
           </div>
         </div>
       </div>
@@ -155,21 +164,55 @@ fetchRepos()
         <div class="nes-container is-dark with-title mt-4 mb-4">
           <p class="title">{{ t('projects.highlights_title') }}</p>
           <div class="highlight-project">
-            <h3><a href="https://ddiidev.github.io/brasilapi-v/" target="_blank">BrasilAPI SDK (Vlang)</a></h3>
-            <p v-html="t('projects.brasilapi_desc')"></p>
+            <div class="highlight-header">
+              <h3><a href="https://tabuamare.api.br/" target="_blank">Tábua de Maré API</a></h3>
+              <span v-if="getStars('tabua_mare_api') !== undefined" class="nes-badge highlight-badge">
+                <span class="is-primary">{{ getStars('tabua_mare_api') }} ★</span>
+              </span>
+            </div>
+            <p v-html="t('projects.tabua_desc')"></p>
+            <a href="https://tabuamare.api.br/" target="_blank" class="preview-link">
+              <img :src="tabuaMarePreview" alt="Preview da API Tábua de Marés" class="project-preview" />
+            </a>
           </div>
           <div class="highlight-project">
-            <h3><a href="https://tabuamare.devtu.qzz.io" target="_blank">Tabua de Maré API</a></h3>
-            <p v-html="t('projects.tabua_desc')"></p>
-            <a href="https://tabuamare.devtu.qzz.io" target="_blank" class="preview-link">
-              <img src="https://tabuamare.devtu.qzz.io/pages/assets/og.webp" alt="Preview da API Tábua de Marés" class="project-preview" />
+            <div class="highlight-header">
+              <h3><a href="https://ddiidev.github.io/AceitaTempo/" target="_blank">AceitaTempo</a></h3>
+              <span v-if="getStars('AceitaTempo') !== undefined" class="nes-badge highlight-badge">
+                <span class="is-primary">{{ getStars('AceitaTempo') }} ★</span>
+              </span>
+            </div>
+            <p v-html="t('projects.aceitatempo_desc')"></p>
+            <a href="https://ddiidev.github.io/AceitaTempo/" target="_blank" class="preview-link">
+              <img :src="aceitaTempoPreview" alt="Preview do AceitaTempo" class="project-preview" />
             </a>
+          </div>
+          <div class="highlight-project">
+            <div class="highlight-header">
+              <h3><a href="https://ddiidev.github.io/brasilapi-v/" target="_blank">BrasilAPI SDK (Vlang)</a></h3>
+              <span v-if="getStars('brasilapi-v') !== undefined" class="nes-badge highlight-badge">
+                <span class="is-primary">{{ getStars('brasilapi-v') }} ★</span>
+              </span>
+            </div>
+            <p v-html="t('projects.brasilapi_desc')"></p>
           </div>
           <div class="highlight-project">
             <h3><a href="https://recordsaas.app/" target="_blank">recordSaaS</a></h3>
             <p>Plataforma de vídeos para SaaS com foco em demonstrações interativas.</p>
             <a href="https://recordsaas.app/" target="_blank" class="preview-link">
               <img src="https://recordsaas.app/assets/app-screenshot.webp" alt="Preview do recordSaaS" class="project-preview" />
+            </a>
+          </div>
+          <div class="highlight-project">
+            <div class="highlight-header">
+              <h3><a href="https://ddiidev.github.io/Json2V/" target="_blank">Json2V</a></h3>
+              <span v-if="getStars('json2V') !== undefined" class="nes-badge highlight-badge">
+                <span class="is-primary">{{ getStars('json2V') }} ★</span>
+              </span>
+            </div>
+            <p v-html="t('projects.json2v_desc')"></p>
+            <a href="https://ddiidev.github.io/Json2V/" target="_blank" class="preview-link">
+              <img :src="json2vPreview" alt="Preview do Json2V" class="project-preview" />
             </a>
           </div>
         </div>
@@ -213,7 +256,7 @@ fetchRepos()
 
     <footer class="footer">
       <p>
-        <span class="nes-text is-primary">{{ t('footer.year') }}</span> - André Luiz
+        <span class="nes-text is-primary">{{ currentYear }}</span> - André Luiz
       </p>
     </footer>
   </div>
@@ -329,6 +372,25 @@ fetchRepos()
   width: 100%;
   border: 3px solid #212529;
   border-radius: 6px;
+}
+
+.highlight-project + .highlight-project {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 4px dashed #fff;
+}
+
+.highlight-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.highlight-badge {
+  width: 6em;
+  flex-shrink: 0;
 }
 
 .repo-desc {
