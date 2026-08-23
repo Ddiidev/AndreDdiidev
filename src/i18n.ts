@@ -23,14 +23,13 @@ const messages = {
       highlights_title: 'Destaques',
       brasilapi_desc: 'SDK em <a href="https://vlang.io/" target="_blank">V</a> para integração com serviços nacionais.',
       tabua_desc: 'API REST pública para monitoramento de marés (em <a href="https://vlang.io/" target="_blank">V</a>).',
+      json2v_desc: 'Ferramenta que converte JSON em structs para a linguagem <a href="https://vlang.io/" target="_blank">V (Vlang)</a>.',
+      aceitatempo_desc: 'Extensão de navegador que converte o preço de um produto nas horas de trabalho necessárias para pagá-lo.',
       all_repos: 'Projetos Selecionados',
       view_all_github: 'Ver todos os repositórios no GitHub',
       language: 'Linguagem',
       stars: 'Estrelas'
     },
-    footer: {
-      year: '2026'
-    }
   },
   en: {
     profile: 'Profile',
@@ -54,14 +53,13 @@ const messages = {
       highlights_title: 'Highlights',
       brasilapi_desc: '<a href="https://vlang.io/" target="_blank">V</a> SDK for integration with national services.',
       tabua_desc: 'Public REST API for tide monitoring (in <a href="https://vlang.io/" target="_blank">V</a>).',
+      json2v_desc: 'Tool that converts JSON into <a href="https://vlang.io/" target="_blank">V (Vlang)</a> structs.',
+      aceitatempo_desc: 'Browser extension that converts a product\'s price into the hours of work needed to afford it.',
       all_repos: 'Selected Projects',
       view_all_github: 'View all repositories on GitHub',
       language: 'Language',
       stars: 'Stars'
     },
-    footer: {
-      year: '2026'
-    }
   }
 }
 
